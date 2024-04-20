@@ -60,6 +60,7 @@ text = "Delete Profile"
 [node name="PathBox" type="LineEdit" parent="Background/HBoxContainer/LeftBar"]
 unique_name_in_owner = true
 layout_mode = 2
+placeholder_text = "Mods folder path here"
 
 [node name="Launch" type="Button" parent="Background/HBoxContainer/LeftBar"]
 layout_mode = 2
