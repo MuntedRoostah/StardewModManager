@@ -1,6 +1,28 @@
-[gd_scene load_steps=2 format=3 uid="uid://cbx6uy7f7qfbd"]
+[gd_scene load_steps=7 format=3 uid="uid://cbx6uy7f7qfbd"]
 
 [ext_resource type="Script" path="res://scripts/profile.gd" id="1_0gbb0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ucwfm"]
+bg_color = Color(0.768627, 0.501961, 0.666667, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ub47m"]
+bg_color = Color(0.627451, 0.882353, 0.647059, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_stoie"]
+bg_color = Color(0.866667, 0.435294, 0.631373, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wjxct"]
+bg_color = Color(0.32549, 0.690196, 0.439216, 1)
+
+[sub_resource type="Theme" id="Theme_5j5wg"]
+Button/colors/font_color = Color(0.2, 0.321569, 0.176471, 1)
+Button/colors/font_focus_color = Color(0.2, 0.321569, 0.176471, 1)
+Button/colors/font_hover_color = Color(0.2, 0.321569, 0.176471, 1)
+Button/styles/hover = SubResource("StyleBoxFlat_ucwfm")
+Button/styles/normal = SubResource("StyleBoxFlat_ub47m")
+Button/styles/pressed = SubResource("StyleBoxFlat_stoie")
+Label/colors/font_color = Color(1, 1, 1, 1)
+Panel/styles/panel = SubResource("StyleBoxFlat_wjxct")
 
 [node name="Profile" type="Button"]
 anchors_preset = 15
@@ -9,22 +31,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
+theme = SubResource("Theme_5j5wg")
+text = "PROFILE_NAME"
 script = ExtResource("1_0gbb0")
-
-[node name="Panel" type="Panel" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-
-[node name="Name" type="Label" parent="Panel"]
-unique_name_in_owner = true
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-text = "PROFILENAME"
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]

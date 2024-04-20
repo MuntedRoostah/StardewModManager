@@ -8,11 +8,11 @@ func _on_pressed():
 	selected.emit()
 
 func _ready():
-	%Name.text = profile_name
+	text = profile_name
 
 func highlight():
-	%Name.text = "> " + profile_name
+	text = " < " + profile_name + " > "
 
 func unhighlight():
-	%Name.text = profile_name
+	text = profile_name
 
