@@ -110,6 +110,10 @@ func set_mods_path(value: String):
 	var content_dir = value.rsplit("/", true, 1)[0]
 	inactive_mods_path = content_dir + "/InactiveMods"
 	exe_path = content_dir + "/StardewModdingAPI.exe"
+	if not FileAccess.file_exists(exe_path):
+		return
+	if not DirAccess.dir_exists_absolute(inactive_mods_path):
+		DirAccess.make_dir_absolute(inactive_mods_path)
 	config.set_value("paths", "mods", value)
 	config.set_value("paths", "inactivemods", inactive_mods_path)
 	config.set_value("paths", "exe", exe_path)
