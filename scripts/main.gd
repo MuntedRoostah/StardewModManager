@@ -184,4 +184,4 @@ func delete_profile(prof):
 
 func _on_launch_pressed():
 	if not exe_path: return
-	OS.execute(exe_path, [], [], false, true)
+	OS.create_process(exe_path, [], true)
