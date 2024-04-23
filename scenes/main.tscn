@@ -13,6 +13,7 @@
 
 [sub_resource type="InputEventKey" id="InputEventKey_ofrlv"]
 device = -1
+shift_pressed = true
 keycode = 4194308
 
 [sub_resource type="Shortcut" id="Shortcut_6t47a"]
@@ -90,7 +91,7 @@ icon = ExtResource("5_0dn4w")
 
 [node name="Delete" type="Button" parent="Background/HBoxContainer/LeftBar/HBoxContainer"]
 layout_mode = 2
-tooltip_text = "Delete Profile (Backspace)"
+tooltip_text = "Delete Profile (Shift + Backspace)"
 shortcut = SubResource("Shortcut_6t47a")
 icon = ExtResource("7_njglu")
 
