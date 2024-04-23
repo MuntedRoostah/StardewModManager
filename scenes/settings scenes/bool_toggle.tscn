@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1ot431qw3deg"]
+
+[ext_resource type="PackedScene" uid="uid://cl2o8n35vfn74" path="res://scenes/settings scenes/base setting.tscn" id="1_2b7r8"]
+
+[node name="BoolToggle" instance=ExtResource("1_2b7r8")]
+
+[node name="Input" type="CheckButton" parent="." index="1"]
+layout_mode = 2
+size_flags_horizontal = 10

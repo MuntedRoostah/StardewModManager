@@ -10,22 +10,24 @@ const PROFILE_PATH = "user://profiles.json"
 var profiles: Dictionary = {}
 var selected_profile: String = ""
 var config: ConfigFile = ConfigFile.new()
-var mods_path: String = ""
 var inactive_mods_path: String = ""
 var exe_path: String = ""
 var mod_list: Array[String] = []
 
 func _ready():
+	self.get_viewport().set_embedding_subwindows(false)
+	get_viewport().get_window().title = "StardewModManager"
 	load_config()
-	%PathBox.text = mods_path
 	load_mods()
 	load_profiles()
 	%Mods.hide()
 
+
+
 func _on_name_box_text_submitted(new_text: String):
 	if not new_text.strip_edges():
 		return # dont add empty profiles
-	%NameBox.text = ""
+	%AddProfile.profile_name = ""
 	new_profile(new_text)
 
 func load_profiles() -> void:
@@ -46,7 +48,7 @@ func save_profiles() -> void:
 	file.store_string(JSON.stringify(profiles))
 
 func load_mods() -> void:
-	if not mods_path:
+	if not%Settings.mods_path.value:
 		return
 	for child in %Mods.get_children():
 		%Mods.remove_child(child)
@@ -77,7 +79,7 @@ func load_mods() -> void:
 		mod_box.disabled.connect(remove_mod.bind(mod))
 
 func disable_mods():
-	var mods_dir = DirAccess.open(mods_path)
+	var mods_dir = DirAccess.open(%Settings.mods_path.value)
 	for mod in mods_dir.get_directories():
 		mods_dir.rename(mod, inactive_mods_path + "/" + mod)
 
@@ -85,10 +87,10 @@ func enable_mod(mod):
 	var inactive_mods_dir = DirAccess.open(inactive_mods_path)
 	if not inactive_mods_dir.dir_exists(mod):
 		return
-	inactive_mods_dir.rename(mod, mods_path + "/" + mod)
+	inactive_mods_dir.rename(mod,%Settings.mods_path.value + "/" + mod)
 
 func disable_mod(mod):
-	var mods_dir = DirAccess.open(mods_path)
+	var mods_dir = DirAccess.open(%Settings.mods_path.value)
 	if not mods_dir.dir_exists(mod):
 		return
 	mods_dir.rename(mod, inactive_mods_path + "/" + mod)
@@ -99,14 +101,14 @@ func load_config() -> void:
 		config.save(CONFIG_PATH)
 		return
 	config.load(CONFIG_PATH)
-	mods_path = config.get_value("paths", "mods")
+	%Settings.mods_path.value = config.get_value("paths", "mods")
 	inactive_mods_path = config.get_value("paths", "inactivemods")
 	exe_path = config.get_value("paths", "exe")
 
 func set_mods_path(value: String):
 	value = value.replace("\\", "/")
 	value = value.rstrip("/")
-	mods_path = value
+	%Settings.mods_path.value = value
 	var content_dir = value.rsplit("/", true, 1)[0]
 	inactive_mods_path = content_dir + "/InactiveMods"
 	exe_path = content_dir + "/StardewModdingAPI.exe"
@@ -125,7 +127,9 @@ func new_profile(prof: String):
 		return
 	profiles[prof] = []
 	save_profiles()
-	add_profile_button(prof).selected.emit()
+	var np = add_profile_button(prof)
+	np.selected.emit()
+	np.grab_focus()
 	
 func add_profile_button(prof: String):
 	var pb = profile_scene.instantiate()
@@ -165,8 +169,8 @@ func remove_mod(mod: String):
 	save_profiles()
 	disable_mod(mod)
 
-func _on_path_box_text_submitted(new_text):
-	set_mods_path(new_text)
+func _on_path_box_text_submitted():
+	set_mods_path(%Settings.mods_path.value)
 
 func _on_delete_pressed():
 	if not selected_profile:
@@ -185,3 +189,11 @@ func delete_profile(prof):
 func _on_launch_pressed():
 	if not exe_path: return
 	OS.create_process(exe_path, [], true)
+
+
+func _on_add_profile_add_new_profile(new_string):
+	_on_name_box_text_submitted(new_string)
+
+
+func _on_settings_settings_closed() -> void:
+	_on_path_box_text_submitted()

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cnuy7e1qnk3kv"]
+
+[ext_resource type="PackedScene" uid="uid://cl2o8n35vfn74" path="res://scenes/settings scenes/base setting.tscn" id="1_a77p1"]
+
+[node name="StringBox" instance=ExtResource("1_a77p1")]
+
+[node name="Input" type="LineEdit" parent="." index="1"]
+layout_mode = 2
+size_flags_horizontal = 3
