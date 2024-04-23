@@ -127,7 +127,9 @@ func new_profile(prof: String):
 		return
 	profiles[prof] = []
 	save_profiles()
-	add_profile_button(prof).selected.emit()
+	var np = add_profile_button(prof)
+	np.selected.emit()
+	np.grab_focus()
 	
 func add_profile_button(prof: String):
 	var pb = profile_scene.instantiate()

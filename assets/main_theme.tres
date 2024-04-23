@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=13 format=3 uid="uid://1omgg3y3okx5"]
+[gd_resource type="Theme" load_steps=14 format=3 uid="uid://1omgg3y3okx5"]
 
 [sub_resource type="Image" id="Image_lg5xk"]
 data = {
@@ -1931,6 +1931,12 @@ cache/1/30/0/glyphs/55/size = Vector2(21, 27)
 cache/1/30/0/glyphs/55/uv_rect = Rect2(120, 59, 21, 27)
 cache/1/30/0/glyphs/55/texture_idx = 0
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o3wqf"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_prgfo"]
 content_margin_left = 4.0
 content_margin_top = 4.0
@@ -1970,6 +1976,7 @@ Button/constants/icon_max_width = 0
 Button/constants/outline_size = 0
 Button/font_sizes/font_size = 16
 Button/fonts/font = SubResource("FontFile_jx24d")
+Button/styles/focus = SubResource("StyleBoxEmpty_o3wqf")
 Button/styles/hover = SubResource("StyleBoxFlat_prgfo")
 Button/styles/normal = SubResource("StyleBoxFlat_kkhcd")
 Button/styles/pressed = SubResource("StyleBoxFlat_apu55")
