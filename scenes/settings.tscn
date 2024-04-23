@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://bg0ikhgrbhscb"]
+
+[ext_resource type="Script" path="res://scripts/settings.gd" id="1_w36o6"]
+[ext_resource type="PackedScene" uid="uid://cnuy7e1qnk3kv" path="res://scenes/settings scenes/string_box.tscn" id="2_cj5h2"]
+[ext_resource type="Theme" uid="uid://1omgg3y3okx5" path="res://assets/main_theme.tres" id="2_pmujw"]
+[ext_resource type="PackedScene" uid="uid://b1ot431qw3deg" path="res://scenes/settings scenes/bool_toggle.tscn" id="3_ginm6"]
+[ext_resource type="PackedScene" uid="uid://ef4yv48fhib1" path="res://scenes/settings scenes/settings page.tscn" id="5_eawln"]
+
+[node name="Settings" type="Window"]
+initial_position = 1
+size = Vector2i(400, 400)
+exclusive = true
+unresizable = true
+popup_window = true
+script = ExtResource("1_w36o6")
+strbox_scene = ExtResource("2_cj5h2")
+booltoggle_scene = ExtResource("3_ginm6")
+page_scene = ExtResource("5_eawln")
+
+[node name="Control" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_pmujw")
+
+[node name="TabContainer" type="TabContainer" parent="Control"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[connection signal="close_requested" from="." to="." method="_on_close_requested"]

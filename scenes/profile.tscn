@@ -1,28 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://cbx6uy7f7qfbd"]
+[gd_scene load_steps=3 format=3 uid="uid://cbx6uy7f7qfbd"]
 
 [ext_resource type="Script" path="res://scripts/profile.gd" id="1_0gbb0"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ucwfm"]
-bg_color = Color(0.54902, 0.54902, 0.54902, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ub47m"]
-bg_color = Color(0.486275, 0.486275, 0.486275, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_stoie"]
-bg_color = Color(0.584314, 0.584314, 0.584314, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wjxct"]
-bg_color = Color(0.32549, 0.690196, 0.439216, 1)
-
-[sub_resource type="Theme" id="Theme_5j5wg"]
-Button/colors/font_color = Color(1, 1, 1, 1)
-Button/colors/font_focus_color = Color(0, 0, 0, 1)
-Button/colors/font_hover_color = Color(0, 0, 0, 1)
-Button/styles/hover = SubResource("StyleBoxFlat_ucwfm")
-Button/styles/normal = SubResource("StyleBoxFlat_ub47m")
-Button/styles/pressed = SubResource("StyleBoxFlat_stoie")
-Label/colors/font_color = Color(1, 1, 1, 1)
-Panel/styles/panel = SubResource("StyleBoxFlat_wjxct")
+[ext_resource type="Theme" uid="uid://cn3u0av4kujc3" path="res://assets/secondary_theme.tres" id="1_1e776"]
 
 [node name="Profile" type="Button"]
 anchors_preset = 15
@@ -31,7 +10,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
-theme = SubResource("Theme_5j5wg")
+theme = ExtResource("1_1e776")
 text = "PROFILE_NAME"
 script = ExtResource("1_0gbb0")
 

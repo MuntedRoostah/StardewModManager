@@ -1,20 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bawoqudyi00f2"]
+[gd_scene load_steps=3 format=3 uid="uid://bawoqudyi00f2"]
 
+[ext_resource type="Theme" uid="uid://cn3u0av4kujc3" path="res://assets/secondary_theme.tres" id="1_l11ax"]
 [ext_resource type="Script" path="res://scripts/mod.gd" id="1_ntyip"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vjtu5"]
-bg_color = Color(0.403922, 0.403922, 0.403922, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7urqs"]
-bg_color = Color(0.243137, 0.243137, 0.243137, 1)
-
-[sub_resource type="Theme" id="Theme_65po7"]
-CheckBox/styles/hover = SubResource("StyleBoxFlat_vjtu5")
-CheckBox/styles/hover_pressed = SubResource("StyleBoxFlat_vjtu5")
-CheckBox/styles/normal = SubResource("StyleBoxFlat_vjtu5")
-CheckBox/styles/pressed = SubResource("StyleBoxFlat_vjtu5")
-Label/colors/font_color = Color(1, 1, 1, 1)
-Panel/styles/panel = SubResource("StyleBoxFlat_7urqs")
 
 [node name="Mod" type="Control"]
 custom_minimum_size = Vector2(0, 96)
@@ -26,6 +13,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("1_l11ax")
 script = ExtResource("1_ntyip")
 
 [node name="Panel" type="Panel" parent="."]
@@ -35,7 +23,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_65po7")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
 layout_mode = 1
