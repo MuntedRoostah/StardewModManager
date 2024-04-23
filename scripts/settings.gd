@@ -16,8 +16,6 @@ var unsaved_changes = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	title = "Settings"
-	transient = true
-	transient_to_focused = true
 	settings_manager = get_parent()
 	
 	## Generate the settings

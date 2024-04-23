@@ -9,6 +9,8 @@
 [node name="Settings" type="Window"]
 initial_position = 1
 size = Vector2i(400, 400)
+transient = true
+transient_to_focused = true
 exclusive = true
 unresizable = true
 popup_window = true
