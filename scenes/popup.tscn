@@ -1,0 +1,70 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0rwyeg2d3du4"]
+
+[ext_resource type="Theme" uid="uid://1omgg3y3okx5" path="res://assets/main_theme.tres" id="1_6kmjg"]
+[ext_resource type="Script" path="res://scripts/popup_close_button.gd" id="1_xtw1p"]
+
+[node name="Popup" type="Window"]
+initial_position = 1
+size = Vector2i(400, 400)
+transient = true
+transient_to_focused = true
+exclusive = true
+unresizable = true
+popup_window = true
+script = ExtResource("1_xtw1p")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_6kmjg")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Popup_Title" type="RichTextLabel" parent="Panel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.3
+theme_override_font_sizes/bold_italics_font_size = 30
+theme_override_font_sizes/italics_font_size = 30
+theme_override_font_sizes/mono_font_size = 30
+theme_override_font_sizes/normal_font_size = 30
+theme_override_font_sizes/bold_font_size = 30
+bbcode_enabled = true
+fit_content = true
+
+[node name="Popup_Body" type="RichTextLabel" parent="Panel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(0.596438, 0.621041, 0.94108, 1)
+theme_override_font_sizes/bold_italics_font_size = 20
+theme_override_font_sizes/italics_font_size = 20
+theme_override_font_sizes/mono_font_size = 20
+theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/bold_font_size = 20
+bbcode_enabled = true
+fit_content = true
+
+[node name="Popup_Button" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.7
+theme_override_font_sizes/font_size = 50
+
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/Popup_Button" to="." method="_on_button_pressed"]

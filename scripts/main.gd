@@ -17,6 +17,7 @@ var mod_list: Array[String] = []
 func _ready():
 	self.get_viewport().set_embedding_subwindows(false)
 	get_viewport().get_window().title = "StardewModManager"
+	get_viewport().get_window().files_dropped.connect(files_dropped)
 	load_config()
 	load_mods()
 	load_profiles()
@@ -113,7 +114,7 @@ func set_mods_path(value: String):
 	inactive_mods_path = content_dir + "/InactiveMods"
 	exe_path = content_dir + "/StardewModdingAPI.exe"
 	if not FileAccess.file_exists(exe_path):
-		return
+		return 
 	if not DirAccess.dir_exists_absolute(inactive_mods_path):
 		DirAccess.make_dir_absolute(inactive_mods_path)
 	config.set_value("paths", "mods", value)
@@ -197,3 +198,33 @@ func _on_add_profile_add_new_profile(new_string):
 
 func _on_settings_settings_closed() -> void:
 	_on_path_box_text_submitted()
+
+func files_dropped(files:PackedStringArray):
+	for path in files:
+		print("OPENING FOLDER: " + path)
+		recursive_open(path, %Settings.mods_path.value)
+	%Popup.create("Mods Added!", "The mods have been moved to your specified mods folder!")
+
+func recursive_open(folder_path:String, root_mod_folder:String):
+	var dir = DirAccess.open(folder_path)
+	if dir:
+		dir.list_dir_begin()
+		var file_name = dir.get_next()
+		var folder_name = folder_path.split("/")[-1]
+		var mod_path = root_mod_folder+"/"+folder_name
+		print("MOD PATH: "+mod_path)
+		if DirAccess.dir_exists_absolute(mod_path):
+			print("Mod with same name already loaded")
+			return
+		DirAccess.make_dir_absolute(mod_path)
+		while file_name != "":
+			if dir.current_is_dir():
+				print("Found directory: " + file_name)
+				recursive_open(folder_path + "/" + file_name, root_mod_folder+"/"+folder_name)
+			else:
+				print("Found file: " + folder_path + "/" + file_name)
+				DirAccess.copy_absolute(folder_path + "/" + file_name, mod_path+"/"+file_name)
+			file_name = dir.get_next()
+	else:
+		print(folder_path)
+		print("An error occurred when trying to access the path.")

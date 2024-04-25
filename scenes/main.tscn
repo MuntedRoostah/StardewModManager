@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dv4mhaj5kwmvi"]
+[gd_scene load_steps=18 format=3 uid="uid://dv4mhaj5kwmvi"]
 
 [ext_resource type="PackedScene" uid="uid://cbx6uy7f7qfbd" path="res://scenes/profile.tscn" id="1_3mx0q"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_h08f6"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://scripts/settings_storage.gd" id="9_s4c8h"]
 [ext_resource type="Texture2D" uid="uid://d1vd10ol7ee8a" path="res://assets/play-button.svg" id="9_tn4kx"]
 [ext_resource type="Script" path="res://scripts/add_profile_button.gd" id="10_37s1u"]
+[ext_resource type="Script" path="res://scripts/popup.gd" id="11_fam27"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_ofrlv"]
 device = -1
@@ -126,6 +127,10 @@ script = ExtResource("9_s4c8h")
 [node name="AddProfile" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("10_37s1u")
+
+[node name="Popup" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("11_fam27")
 
 [connection signal="pressed" from="Background/HBoxContainer/LeftBar/HBoxContainer/Settings" to="Settings" method="_on_settings_pressed"]
 [connection signal="pressed" from="Background/HBoxContainer/LeftBar/HBoxContainer/Delete" to="." method="_on_delete_pressed"]
