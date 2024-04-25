@@ -202,12 +202,11 @@ func _on_settings_settings_closed() -> void:
 func files_dropped(files:PackedStringArray):
 	for path in files:
 		print("OPENING FOLDER: " + path)
+		path = path.replace("\\", "/")
 		recursive_open(path, %Settings.mods_path.value)
 	%Popup.create("Mods Added!", "The mods have been moved to your specified mods folder!")
 
 func recursive_open(folder_path:String, root_mod_folder:String):
-	folder_path = folder_path.replace("\\", "/")
-	root_mod_folder = root_mod_folder.replace("\\", "/")
 	var dir = DirAccess.open(folder_path)
 	if dir:
 		dir.list_dir_begin()
