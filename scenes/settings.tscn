@@ -1,14 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://bg0ikhgrbhscb"]
+[gd_scene load_steps=7 format=3 uid="uid://bg0ikhgrbhscb"]
 
 [ext_resource type="Script" path="res://scripts/settings.gd" id="1_w36o6"]
 [ext_resource type="PackedScene" uid="uid://cnuy7e1qnk3kv" path="res://scenes/settings scenes/string_box.tscn" id="2_cj5h2"]
 [ext_resource type="Theme" uid="uid://1omgg3y3okx5" path="res://assets/main_theme.tres" id="2_pmujw"]
 [ext_resource type="PackedScene" uid="uid://b1ot431qw3deg" path="res://scenes/settings scenes/bool_toggle.tscn" id="3_ginm6"]
+[ext_resource type="PackedScene" uid="uid://ibj2h0vxnvv7" path="res://scenes/settings scenes/path_box.tscn" id="4_tpmwn"]
 [ext_resource type="PackedScene" uid="uid://ef4yv48fhib1" path="res://scenes/settings scenes/settings page.tscn" id="5_eawln"]
 
 [node name="Settings" type="Window"]
 initial_position = 1
-size = Vector2i(400, 400)
+size = Vector2i(565, 565)
 transient = true
 transient_to_focused = true
 exclusive = true
@@ -17,6 +18,7 @@ popup_window = true
 script = ExtResource("1_w36o6")
 strbox_scene = ExtResource("2_cj5h2")
 booltoggle_scene = ExtResource("3_ginm6")
+pathbox_scene = ExtResource("4_tpmwn")
 page_scene = ExtResource("5_eawln")
 
 [node name="Control" type="Panel" parent="."]
