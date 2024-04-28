@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://ibj2h0vxnvv7"]
+
+[ext_resource type="PackedScene" uid="uid://cnuy7e1qnk3kv" path="res://scenes/settings scenes/string_box.tscn" id="1_bynkg"]
+[ext_resource type="Texture2D" uid="uid://d0prqlyiujjqv" path="res://assets/open-folder.svg" id="2_vvt4d"]
+[ext_resource type="Script" path="res://scripts/path_button.gd" id="3_0iggx"]
+
+[node name="PathBox" instance=ExtResource("1_bynkg")]
+
+[node name="Input" parent="." index="1"]
+unique_name_in_owner = true
+
+[node name="Button" type="Button" parent="." index="2"]
+layout_mode = 2
+icon = ExtResource("2_vvt4d")
+script = ExtResource("3_0iggx")
+
+[node name="FileDialog" type="FileDialog" parent="." index="3"]
+unique_name_in_owner = true
+title = "Open a Directory"
+initial_position = 1
+size = Vector2i(565, 565)
+unresizable = true
+popup_window = true
+ok_button_text = "Select Current Folder"
+dialog_hide_on_ok = true
+file_mode = 2
+access = 2
+
+[connection signal="dir_selected" from="FileDialog" to="Button" method="_on_file_dialog_dir_selected"]

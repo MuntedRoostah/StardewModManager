@@ -10,6 +10,7 @@ var unsaved_changes = false
 @export var intbox_scene:PackedScene
 @export var floatbox_scene:PackedScene
 @export var booltoggle_scene:PackedScene
+@export var pathbox_scene:PackedScene
 
 @export var page_scene:PackedScene
 
@@ -31,6 +32,12 @@ func _ready() -> void:
 				new_setting.get_node("Label").text = setting.setting_name
 				new_setting.get_node("Input").text = setting.value
 				new_setting.get_node("Input").text_changed.connect(setting.update)
+			elif setting.type == settings_manager.Setting.typeEnum.PathBox:
+				new_setting = pathbox_scene.instantiate()
+				new_setting.get_node("Label").text = setting.setting_name
+				new_setting.get_node("Input").text = setting.value
+				new_setting.get_node("Input").text_changed.connect(setting.update)
+				new_setting.get_node("FileDialog").dir_selected.connect(setting.update)
 			else:
 				new_setting = booltoggle_scene.instantiate()
 				new_setting.get_node("Label").text = setting.setting_name				

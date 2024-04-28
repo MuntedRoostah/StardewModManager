@@ -3,7 +3,7 @@ extends Node
 signal settings_closed
 
 class Setting:
-	enum typeEnum {StrBox, IntRange, FloatRange, IntBox, FloatBox, BoolToggle}
+	enum typeEnum {StrBox, IntRange, FloatRange, IntBox, FloatBox, BoolToggle, PathBox}
 	var setting_name:String
 	var type:typeEnum
 	var min
@@ -31,12 +31,12 @@ var settings_window: Window
 
 # all the settings go here
 
-var mods_path = Setting.new("Path to mods", Setting.typeEnum.StrBox, "")
+var mods_path = Setting.new("Path to mods", Setting.typeEnum.PathBox, "")
 
 # and their pages here
 
 var pages = [
-	Settings_page.new("The only page",[mods_path])
+	Settings_page.new("General",[mods_path])
 ]
 
 func _on_settings_pressed() -> void:
