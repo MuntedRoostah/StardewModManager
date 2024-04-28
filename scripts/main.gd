@@ -200,13 +200,19 @@ func _on_settings_settings_closed() -> void:
 	_on_path_box_text_submitted()
 
 func files_dropped(files:PackedStringArray):
+	var failed_imports = ""
 	for path in files:
 		print("OPENING FOLDER: " + path)
 		path = path.replace("\\", "/")
-		recursive_open(path, %Settings.mods_path.value)
+		if not recursive_open(path, %Settings.mods_path.value):
+			if failed_imports:
+				failed_imports += ", "
+			failed_imports += (path.split("/")[-1])
+	if failed_imports:
+		%Popup.create("Some Mods Were Not Added!", "This was most likely due to the mod already being installed!\nFailed Mods:\n"+failed_imports)
 	%Popup.create("Mods Added!", "The mods have been moved to your specified mods folder!")
 
-func recursive_open(folder_path:String, root_mod_folder:String):
+func recursive_open(folder_path:String, root_mod_folder:String) -> bool:
 	var dir = DirAccess.open(folder_path)
 	if dir:
 		dir.list_dir_begin()
@@ -216,7 +222,7 @@ func recursive_open(folder_path:String, root_mod_folder:String):
 		print("MOD PATH: "+mod_path)
 		if DirAccess.dir_exists_absolute(mod_path):
 			print("Mod with same name already loaded")
-			return
+			return false
 		DirAccess.make_dir_absolute(mod_path)
 		while file_name != "":
 			if dir.current_is_dir():
@@ -229,3 +235,4 @@ func recursive_open(folder_path:String, root_mod_folder:String):
 	else:
 		print(folder_path)
 		print("An error occurred when trying to access the path.")
+	return true
